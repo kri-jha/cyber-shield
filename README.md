@@ -2,6 +2,8 @@
 
 **CyberShield** is a web application designed to help victims of cyber crime. It connects users with verified cyber security experts, allows for anonymous reporting of incidents, and provides essential digital safety tools.
 
+### 🔴 [Live Demo (MVP)](https://cyber-shield-silk.vercel.app/)
+
 ![CyberShield Screenshot](frontend/assets/screenshot.png) 
 *(Note: Add a screenshot to frontend/assets/screenshot.png or remove this line)*
 
