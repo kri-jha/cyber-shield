@@ -63,6 +63,38 @@ function toggleLogin() {
     }
 }
 
+async function handleGoogleLogin() {
+    try {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        const result = await auth.signInWithPopup(provider);
+        const user = result.user;
+
+        showNotification('Google Login Successful!', 'success');
+
+        // Sync with backend
+        const token = await user.getIdToken();
+        localStorage.setItem('auth_token', token);
+
+        // Call backend to ensure user exists
+        const apiResponse = await window.api.post('/auth/login', {});
+
+        // Save user info locally
+        localStorage.setItem('current_user', JSON.stringify({
+            uid: user.uid,
+            email: user.email,
+            username: user.displayName || user.email.split('@')[0],
+            picture: user.photoURL
+        }));
+
+        toggleLogin();
+        updateUIForLogin();
+
+    } catch (error) {
+        console.error('Google Login Error:', error);
+        showNotification(error.message, 'error');
+    }
+}
+
 function selectRole(role) {
     const buttons = document.querySelectorAll('.role-btn');
     buttons.forEach(btn => btn.classList.remove('active'));
