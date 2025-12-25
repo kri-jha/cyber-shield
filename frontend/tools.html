@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safety Tools - CyberShield</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .tools-container {
+            max-width: 1200px;
+            margin: 80px auto 40px;
+            padding: 0 15px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .tools-header {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .tools-header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tools-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tool-stat {
+            text-align: center;
+            padding: 15px 25px;
+            background: #f8fafc;
+            border-radius: 10px;
+            min-width: 150px;
+        }
+
+        .tool-stat i {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #3b82f6;
+        }
+
+        .tool-stat .number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1f2937;
+            display: block;
+        }
+
+        .tool-stat .label {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .tool-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: #3b82f6;
+        }
+
+        .tool-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: white;
+            font-size: 32px;
+        }
+
+        .tool-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #1f2937;
+        }
+
+        .tool-card p {
+            color: #6b7280;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .tool-input-group {
+            margin-bottom: 20px;
+        }
+
+        .tool-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            transition: border-color 0.3s;
+        }
+
+        .tool-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .result-box {
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-box.safe {
+            background: #f0fdf4;
+            border-left: 4px solid #10b981;
+            color: #065f46;
+        }
+
+        .result-box.warning {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            color: #92400e;
+        }
+
+        .result-box.danger {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            color: #991b1b;
+        }
+
+        .result-box.info {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            color: #1e40af;
+        }
+
+        .strength-meter {
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+
+        .strength-bar {
+            height: 100%;
+            width: 0%;
+            transition: all 0.3s;
+        }
+
+        .strength-text {
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        .tips-list {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 15px;
+        }
+
+        .tips-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tips-list li:last-child {
+            border-bottom: none;
+        }
+
+        .tips-list li i {
+            color: #10b981;
+        }
+
+        .emergency-section {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .emergency-section h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .emergency-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .emergency-btn {
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 2px solid white;
+            background: transparent;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .emergency-btn:hover {
+            background: white;
+            color: #ef4444;
+        }
+
+        .emergency-btn.primary {
+            background: white;
+            color: #ef4444;
+        }
+
+        .emergency-btn.primary:hover {
+            background: #f3f4f6;
+        }
+
+        .tool-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .emergency-buttons {
+                flex-direction: column;
+            }
+            
+            .tool-stat {
+                min-width: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Include Navbar -->
+    <div id="navbar-container"></div>
+
+    <script>
+    // Load navbar content
+    fetch('navbar.html')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('navbar-container').innerHTML = html;
+        })
+        .catch(error => console.error('Error loading navbar:', error));
+    </script>
+    <div class="tools-container">
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Feed
+        </a>
+
+        <div class="tools-header">
+            <h1><i class="fas fa-tools"></i> Cyber Safety Toolkit</h1>
+            <p>Protect yourself with these free safety tools and resources</p>
+            
+            <div class="tools-stats">
+                <div class="tool-stat">
+                    <i class="fas fa-shield-check"></i>
+                    <span class="number">50,000+</span>
+                    <span class="label">Users Protected</span>
+                </div>
+                <div class="tool-stat">
+                    <i class="fas fa-search"></i>
+                    <span class="number">12,456</span>
+                    <span class="label">URLs Scanned</span>
+                </div>
+                <div class="tool-stat">
+                    <i class="fas fa-key"></i>
+                    <span class="number">8,942</span>
+                    <span class="label">Passwords Tested</span>
+                </div>
+                <div class="tool-stat">
+                    <i class="fas fa-phone-alt"></i>
+                    <span class="number">24/7</span>
+                    <span class="label">Emergency Support</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="tools-grid">
+            <!-- URL Scanner -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>URL Scanner</h3>
+                <p>Check if a website is safe before visiting. Detects phishing sites, malware, and suspicious domains.</p>
+                
+                <div class="tool-input-group">
+                    <input type="text" class="tool-input" id="urlInput" placeholder="Enter website URL (e.g., https://example.com)">
+                    <button class="btn-primary" onclick="scanURL()">
+                        <i class="fas fa-shield-alt"></i> Scan URL
+                    </button>
+                </div>
+                
+                <div class="result-box" id="urlResult">
+                    <!-- Result will appear here -->
+                </div>
+                
+                <div style="margin-top: 15px;">
+                    <h4 style="font-size: 14px; margin-bottom: 10px; color: #6b7280;">Recent Scans:</h4>
+                    <div style="font-size: 13px; color: #9ca3af;">
+                        <div style="display: flex; justify-content: space-between; padding: 5px 0;">
+                            <span>facebook.com</span>
+                            <span style="color: #10b981;">✅ Safe</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 5px 0;">
+                            <span>secure-bank-login.com</span>
+                            <span style="color: #ef4444;">⚠️ Suspicious</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Password Strength Tester -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <i class="fas fa-key"></i>
+                </div>
+                <h3>Password Strength</h3>
+                <p>Test how strong your password is. Get tips to create secure passwords that are hard to crack.</p>
+                
+                <div class="tool-input-group">
+                    <input type="password" class="tool-input" id="passwordInput" placeholder="Enter password to test" oninput="checkPasswordStrength()">
+                    <div class="strength-meter">
+                        <div class="strength-bar" id="passwordStrengthBar"></div>
+                    </div>
+                    <div class="strength-text" id="passwordStrengthText">Enter password</div>
+                </div>
+                
+                <div class="result-box info" id="passwordTips" style="display: block;">
+                    <strong>Tips for strong password:</strong>
+                    <ul class="tips-list">
+                        <li><i class="fas fa-check"></i> Use at least 12 characters</li>
+                        <li><i class="fas fa-check"></i> Mix uppercase & lowercase</li>
+                        <li><i class="fas fa-check"></i> Include numbers & symbols</li>
+                        <li><i class="fas fa-check"></i> Avoid common words</li>
+                    </ul>
+                </div>
+                
+                <div class="tool-actions">
+                    <button class="btn-secondary" onclick="generatePassword()">
+                        <i class="fas fa-random"></i> Generate Strong
+                    </button>
+                    <button class="btn-primary" onclick="savePassword()">
+                        <i class="fas fa-save"></i> Save Tips
+                    </button>
+                </div>
+            </div>
+
+            <!-- Email Checker -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>Email Safety Checker</h3>
+                <p>Verify suspicious emails for phishing attempts, spam, and malicious content.</p>
+                
+                <div class="tool-input-group">
+                    <textarea class="tool-input" id="emailInput" rows="3" placeholder="Paste suspicious email content here..."></textarea>
+                    <button class="btn-primary" onclick="checkEmail()">
+                        <i class="fas fa-search"></i> Analyze Email
+                    </button>
+                </div>
+                
+                <div class="result-box" id="emailResult">
+                    <!-- Result will appear here -->
+                </div>
+                
+                <div style="margin-top: 15px; font-size: 14px; color: #6b7280;">
+                    <p><strong>Common phishing signs:</strong></p>
+                    <p style="font-size: 13px;">• Urgent action required<br>• Suspicious sender address<br>• Asking for personal info<br>• Poor grammar/spelling</p>
+                </div>
+            </div>
+
+            <!-- Data Breach Checker -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h3>Data Breach Check</h3>
+                <p>Check if your email or phone number has been compromised in known data breaches.</p>
+                
+                <div class="tool-input-group">
+                    <input type="email" class="tool-input" id="breachEmail" placeholder="Enter your email address">
+                    <button class="btn-primary" onclick="checkBreach()">
+                        <i class="fas fa-shield-alt"></i> Check Breaches
+                    </button>
+                </div>
+                
+                <div class="result-box info" id="breachResult" style="display: none;">
+                    <!-- Result will appear here -->
+                </div>
+                
+                <div style="margin-top: 15px; padding: 15px; background: #f0f9ff; border-radius: 10px;">
+                    <p style="font-size: 14px; margin: 0;">
+                        <i class="fas fa-info-circle" style="color: #3b82f6;"></i>
+                        <strong>Note:</strong> We don't store your email. Check is done locally.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Digital Will Generator -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <i class="fas fa-file-contract"></i>
+                </div>
+                <h3>Digital Will Generator</h3>
+                <p>Create a simple digital will to specify what happens to your online accounts in emergencies.</p>
+                
+                <div style="margin-top: 15px;">
+                    <ul class="tips-list">
+                        <li><i class="fas fa-user"></i> Assign digital executors</li>
+                        <li><i class="fas fa-lock"></i> Specify account access</li>
+                        <li><i class="fas fa-trash"></i> Set data deletion rules</li>
+                        <li><i class="fas fa-share"></i> Share important passwords</li>
+                    </ul>
+                </div>
+                
+                <button class="btn-primary" style="margin-top: 20px;" onclick="createDigitalWill()">
+                    <i class="fas fa-file-download"></i> Generate Template
+                </button>
+            </div>
+
+            <!-- Privacy Settings Check -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <i class="fas fa-user-secret"></i>
+                </div>
+                <h3>Privacy Checkup</h3>
+                <p>Step-by-step guide to secure your social media and online account privacy settings.</p>
+                
+                <div style="margin-top: 15px;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                        <span>Facebook Privacy</span>
+                        <button class="btn-small" onclick="guidePrivacy('facebook')">Check</button>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                        <span>Instagram Security</span>
+                        <button class="btn-small" onclick="guidePrivacy('instagram')">Check</button>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                        <span>WhatsApp Settings</span>
+                        <button class="btn-small" onclick="guidePrivacy('whatsapp')">Check</button>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <span>Google Account</span>
+                        <button class="btn-small" onclick="guidePrivacy('google')">Check</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Emergency Section -->
+        <div class="emergency-section">
+            <h2><i class="fas fa-exclamation-triangle"></i> Immediate Emergency Help</h2>
+            <p>If you're in immediate danger or facing urgent cyber threats</p>
+            
+            <div class="emergency-buttons">
+                <button class="emergency-btn primary" onclick="callEmergency()">
+                    <i class="fas fa-phone-alt"></i> Call Cyber Crime Helpline (1930)
+                </button>
+                <button class="emergency-btn" onclick="window.location.href='create.html'">
+                    <i class="fas fa-user-shield"></i> Get Expert Help Now
+                </button>
+                <button class="emergency-btn" onclick="showEmergencyGuide()">
+                    <i class="fas fa-first-aid"></i> Emergency Guide
+                </button>
+            </div>
+        </div>
+
+        <!-- Resources Section -->
+        <div style="margin-top: 40px; background: white; border-radius: 15px; padding: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+            <h3 style="margin-bottom: 20px; color: #1f2937;">Free Resources</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px;">
+                <div style="padding: 20px; background: #f8fafc; border-radius: 10px;">
+                    <i class="fas fa-book" style="color: #3b82f6; font-size: 24px; margin-bottom: 10px;"></i>
+                    <h4 style="margin-bottom: 10px;">Safety Guides</h4>
+                    <p style="font-size: 14px; color: #6b7280;">Download free PDF guides on cyber safety</p>
+                    <button class="btn-small" style="margin-top: 10px;">Download</button>
+                </div>
+                <div style="padding: 20px; background: #f8fafc; border-radius: 10px;">
+                    <i class="fas fa-video" style="color: #3b82f6; font-size: 24px; margin-bottom: 10px;"></i>
+                    <h4 style="margin-bottom: 10px;">Video Tutorials</h4>
+                    <p style="font-size: 14px; color: #6b7280;">Watch step-by-step security setup videos</p>
+                    <button class="btn-small" style="margin-top: 10px;">Watch</button>
+                </div>
+                <div style="padding: 20px; background: #f8fafc; border-radius: 10px;">
+                    <i class="fas fa-newspaper" style="color: #3b82f6; font-size: 24px; margin-bottom: 10px;"></i>
+                    <h4 style="margin-bottom: 10px;">Latest Scams</h4>
+                    <p style="font-size: 14px; color: #6b7280;">Stay updated on new cyber crime trends</p>
+                    <button class="btn-small" style="margin-top: 10px;">Read</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    
+    <script src="script.js"></script>
+    <script>
+        // URL Scanner
+        function scanURL() {
+            const urlInput = document.getElementById('urlInput');
+            const resultBox = document.getElementById('urlResult');
+            
+            if (!urlInput.value.trim()) {
+                showNotification('Please enter a URL to scan', 'error');
+                return;
+            }
+            
+            const url = urlInput.value.trim().toLowerCase();
+            
+            // Mock scanning logic
+            let isSafe = true;
+            let message = '';
+            let type = 'safe';
+            
+            // Check for suspicious patterns
+            if (url.includes('login') || url.includes('secure') || url.includes('bank')) {
+                if (url.includes('http://') && !url.includes('https://')) {
+                    isSafe = false;
+                    message = '⚠️ WARNING: This site uses HTTP (not secure). Avoid entering personal information.';
+                    type = 'danger';
+                } else if (url.includes('.tk') || url.includes('.ml') || url.includes('.ga')) {
+                    isSafe = false;
+                    message = '⚠️ DANGER: This domain is known for phishing attacks. Do not visit!';
+                    type = 'danger';
+                } else {
+                    message = '✅ This site appears to be safe. Always check for HTTPS and valid certificates.';
+                    type = 'safe';
+                }
+            } else if (url.includes('facebook.com') || url.includes('google.com') || url.includes('github.com')) {
+                message = '✅ This is a trusted website. Safe to visit.';
+                type = 'safe';
+            } else {
+                message = '⚠️ CAUTION: This website is not in our trusted database. Proceed with caution.';
+                type = 'warning';
+            }
+            
+            // Show result
+            resultBox.className = `result-box ${type}`;
+            resultBox.innerHTML = `
+                <strong>Scan Result:</strong>
+                <p>${message}</p>
+                <div style="margin-top: 10px; font-size: 13px;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>HTTPS:</span>
+                        <span>${url.includes('https://') ? '✅ Present' : '❌ Missing'}</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 5px;">
+                        <span>Domain Age:</span>
+                        <span>${isSafe ? '✅ Established' : '⚠️ Unknown'}</span>
+                    </div>
+                </div>
+            `;
+            resultBox.style.display = 'block';
+            
+            showNotification('URL scan completed', 'success');
+        }
+
+        // Password Strength Checker
+        function checkPasswordStrength() {
+            const password = document.getElementById('passwordInput').value;
+            const strengthBar = document.getElementById('passwordStrengthBar');
+            const strengthText = document.getElementById('passwordStrengthText');
+            
+            let strength = 0;
+            let color = '#ef4444';
+            let text = 'Very Weak';
+            
+            // Calculate strength
+            if (password.length >= 8) strength += 25;
+            if (/[A-Z]/.test(password) && /[a-z]/.test(password)) strength += 25;
+            if (/[0-9]/.test(password)) strength += 25;
+            if (/[^A-Za-z0-9]/.test(password)) strength += 25;
+            
+            // Set color and text based on strength
+            if (strength >= 75) {
+                color = '#10b981';
+                text = 'Strong';
+            } else if (strength >= 50) {
+                color = '#f59e0b';
+                text = 'Medium';
+            } else if (strength >= 25) {
+                color = '#f97316';
+                text = 'Weak';
+            }
+            
+            // Update UI
+            strengthBar.style.width = `${strength}%`;
+            strengthBar.style.background = color;
+            strengthText.textContent = text;
+            strengthText.style.color = color;
+        }
+
+        function generatePassword() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()';
+            let password = '';
+            
+            for (let i = 0; i < 16; i++) {
+                password += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            
+            document.getElementById('passwordInput').value = password;
+            checkPasswordStrength();
+            showNotification('Strong password generated!', 'success');
+        }
+
+        function savePassword() {
+            showNotification('Password tips saved to your account', 'success');
+        }
+
+        // Email Checker
+        function checkEmail() {
+            const emailContent = document.getElementById('emailInput').value;
+            const resultBox = document.getElementById('emailResult');
+            
+            if (!emailContent.trim()) {
+                showNotification('Please paste email content', 'error');
+                return;
+            }
+            
+            let score = 0;
+            let warnings = [];
+            
+            // Check for common phishing signs
+            if (emailContent.toLowerCase().includes('urgent') || emailContent.includes('immediate')) {
+                score += 2;
+                warnings.push('• Uses urgent language');
+            }
+            if (emailContent.includes('click here') || emailContent.includes('login now')) {
+                score += 2;
+                warnings.push('• Contains suspicious links');
+            }
+            if (emailContent.includes('password') || emailContent.includes('account')) {
+                score += 1;
+                warnings.push('• Asks for credentials');
+            }
+            if (emailContent.includes('$') || emailContent.includes('money') || emailContent.includes('payment')) {
+                score += 2;
+                warnings.push('• Mentions money/finances');
+            }
+            if (emailContent.includes('dear customer') || emailContent.includes('valued member')) {
+                score += 1;
+                warnings.push('• Generic greeting');
+            }
+            
+            // Determine result
+            let type = 'safe';
+            let message = 'This email appears to be legitimate.';
+            
+            if (score >= 5) {
+                type = 'danger';
+                message = '⚠️ HIGH RISK: This email shows strong phishing signs. Do not click links or reply.';
+            } else if (score >= 3) {
+                type = 'warning';
+                message = '⚠️ SUSPICIOUS: This email may be phishing. Verify sender before taking action.';
+            }
+            
+            // Show result
+            resultBox.className = `result-box ${type}`;
+            resultBox.innerHTML = `
+                <strong>Analysis Result:</strong>
+                <p>${message}</p>
+                ${warnings.length > 0 ? `
+                    <div style="margin-top: 10px;">
+                        <strong>Detected Issues:</strong>
+                        <div style="font-size: 13px; margin-top: 5px;">
+                            ${warnings.join('<br>')}
+                        </div>
+                    </div>
+                ` : ''}
+            `;
+            resultBox.style.display = 'block';
+            
+            showNotification('Email analysis completed', 'success');
+        }
+
+        // Data Breach Checker
+        function checkBreach() {
+            const email = document.getElementById('breachEmail').value;
+            const resultBox = document.getElementById('breachResult');
+            
+            if (!email.trim() || !email.includes('@')) {
+                showNotification('Please enter a valid email', 'error');
+                return;
+            }
+            
+            // Mock breach check (in real app, this would be API call)
+            const mockBreaches = [
+                { company: 'Social Media Platform', date: '2022-03-15', records: '500M' },
+                { company: 'E-commerce Site', date: '2021-11-30', records: '10M' },
+                { company: 'Gaming Platform', date: '2020-08-20', records: '2M' }
+            ];
+            
+            // Randomly decide if breached
+            const isBreached = Math.random() > 0.5;
+            
+            if (isBreached) {
+                resultBox.className = 'result-box danger';
+                resultBox.innerHTML = `
+                    <strong>⚠️ Breach Found!</strong>
+                    <p>Your email was found in ${mockBreaches.length} data breaches.</p>
+                    <div style="margin-top: 10px; font-size: 13px;">
+                        ${mockBreaches.map(breach => `
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>${breach.company}</span>
+                                <span>${breach.date} (${breach.records} records)</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div style="margin-top: 15px; padding: 10px; background: #fef3c7; border-radius: 5px;">
+                        <strong>Recommended Actions:</strong>
+                        <p style="margin-top: 5px; font-size: 13px;">
+                            1. Change password for affected sites<br>
+                            2. Enable two-factor authentication<br>
+                            3. Monitor accounts for suspicious activity
+                        </p>
+                    </div>
+                `;
+            } else {
+                resultBox.className = 'result-box safe';
+                resultBox.innerHTML = `
+                    <strong>✅ No Breaches Found</strong>
+                    <p>Your email was not found in known data breaches.</p>
+                    <div style="margin-top: 15px; padding: 10px; background: #f0fdf4; border-radius: 5px;">
+                        <strong>Keep it secure:</strong>
+                        <p style="margin-top: 5px; font-size: 13px;">
+                            • Use unique passwords for each site<br>
+                            • Enable two-factor authentication<br>
+                            • Regularly update passwords
+                        </p>
+                    </div>
+                `;
+            }
+            
+            resultBox.style.display = 'block';
+            showNotification('Breach check completed', 'success');
+        }
+
+        // Other Tools
+        function createDigitalWill() {
+            showNotification('Digital will template downloaded. Fill in your details.', 'success');
+        }
+
+        function guidePrivacy(platform) {
+            const guides = {
+                facebook: 'https://www.facebook.com/help/325807937506242',
+                instagram: 'https://help.instagram.com/196883487377501',
+                whatsapp: 'https://faq.whatsapp.com/',
+                google: 'https://myaccount.google.com/security-checkup'
+            };
+            
+            showNotification(`Opening ${platform} privacy guide...`, 'info');
+            // In real app: window.open(guides[platform], '_blank');
+        }
+
+        function callEmergency() {
+            showNotification('Dialing Cyber Crime Helpline: 1930', 'info');
+            // In real app: window.location.href = 'tel:1930';
+        }
+
+        function showEmergencyGuide() {
+            window.location.href = 'create.html?emergency=true';
+        }
+    </script>
+</body>
+</html>

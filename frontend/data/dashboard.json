@@ -1,0 +1,41 @@
+{
+  "stats": {
+    "overall": {
+      "totalUsers": 12543,
+      "activeUsers": 2345,
+      "totalCases": 8923,
+      "resolvedCases": 7689,
+      "successRate": "86.2%",
+      "avgResolutionTime": "2.3 days",
+      "totalExperts": 42,
+      "onlineExperts": 28
+    },
+    "today": {
+      "newTickets": 156,
+      "resolvedTickets": 89,
+      "newUsers": 234,
+      "expertActivity": 567,
+      "postsCreated": 23,
+      "likesReceived": 1567
+    },
+    "categories": {
+      "phishing": 2345,
+      "hacking": 1890,
+      "fraud": 1567,
+      "bullying": 987,
+      "social-media": 1345,
+      "online-shopping": 876,
+      "investment": 654,
+      "loan": 543,
+      "dating": 432,
+      "gaming": 321
+    },
+    "trending": {
+      "topExpert": "Dr. Sarah Wilson",
+      "topCase": "Bank OTP Scam Recovery",
+      "mostHelpfulPost": "Instagram Account Recovery Guide",
+      "fastestResolution": "1.2 hours",
+      "highestRecovery": "₹12,50,000"
+    }
+  }
+}

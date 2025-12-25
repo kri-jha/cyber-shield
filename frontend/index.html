@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberShield - Cyber Crime Support</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <h1>CyberShield</h1>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="active"><i class="fas fa-home"></i> Home</a>
+                <a href="#dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                <a href="#create-ticket"><i class="fas fa-plus-circle"></i> Create Ticket</a>
+                <a href="#experts"><i class="fas fa-users"></i> Experts</a>
+                <a href="#tools"><i class="fas fa-tools"></i> Tools</a>
+                <button class="btn-login" onclick="toggleLogin()">
+                    <i class="fas fa-user"></i> Login
+                </button>
+            </div>
+            <button class="menu-btn" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#" onclick="toggleMenu()"><i class="fas fa-home"></i> Home</a>
+        <a href="#dashboard" onclick="toggleMenu()"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="#create-ticket" onclick="toggleMenu()"><i class="fas fa-plus-circle"></i> Create Ticket</a>
+        <a href="#experts" onclick="toggleMenu()"><i class="fas fa-users"></i> Experts</a>
+        <a href="#tools" onclick="toggleMenu()"><i class="fas fa-tools"></i> Tools</a>
+        <button class="btn-login" onclick="toggleLogin()">
+            <i class="fas fa-user"></i> Login
+        </button>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Login / Register</h2>
+                <button class="close-btn" onclick="toggleLogin()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="role-selector">
+                    <button class="role-btn active" onclick="selectRole('victim')">
+                        <i class="fas fa-user-injured"></i>
+                        <span>Victim</span>
+                    </button>
+                    <button class="role-btn" onclick="selectRole('expert')">
+                        <i class="fas fa-user-shield"></i>
+                        <span>Expert</span>
+                    </button>
+                    <button class="role-btn" onclick="selectRole('anonymous')">
+                        <i class="fas fa-user-secret"></i>
+                        <span>Anonymous</span>
+                    </button>
+                </div>
+                
+                <form id="loginForm" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="username"><i class="fas fa-user"></i> Username</label>
+                        <input type="text" id="username" placeholder="Enter username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password"><i class="fas fa-lock"></i> Password</label>
+                        <input type="password" id="password" placeholder="Enter password" required>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="anonymousMode" checked>
+                        <label for="anonymousMode">Stay Anonymous</label>
+                        <span class="tooltip">
+                            <i class="fas fa-info-circle"></i>
+                            <span class="tooltip-text">Your identity will be hidden from experts</span>
+                        </span>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+                    
+                    <p class="register-link">
+                        Don't have account? <a href="#" onclick="showRegister()">Register here</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="tag">
+                    <i class="fas fa-shield-check"></i>
+                    <span>Trusted by 50,000+ Users</span>
+                </div>
+                <h1>Cyber Crime Support <span>Made Safe & Simple</span></h1>
+                <p>Get instant help from verified cyber security experts. Share your issue anonymously, get expert guidance, and protect yourself from future threats.</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="scrollToSection('create-ticket')">
+                        <i class="fas fa-plus-circle"></i> Create Ticket
+                    </button>
+                    <button class="btn-secondary" onclick="scrollToSection('tools')">
+                        <i class="fas fa-tools"></i> Safety Tools
+                    </button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="floating-cards">
+                    <div class="card ticket-card">
+                        <div class="card-header">
+                            <span class="badge critical">Critical</span>
+                            <span class="time">2h ago</span>
+                        </div>
+                        <h3>Account Hacked</h3>
+                        <p>Facebook account compromised</p>
+                        <div class="expert-info">
+                            <img src="https://ui-avatars.com/api/?name=Alex+J&background=3b82f6&color=fff" alt="Expert">
+                            <span>Assigned to: Alex Johnson</span>
+                        </div>
+                    </div>
+                    <div class="card ticket-card">
+                        <div class="card-header">
+                            <span class="badge resolved">Resolved</span>
+                            <span class="time">1d ago</span>
+                        </div>
+                        <h3>Phishing Email</h3>
+                        <p>Bank phishing attempt prevented</p>
+                        <div class="solved-badge">
+                            <i class="fas fa-check-circle"></i> Case Solved
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section class="dashboard" id="dashboard">
+        <div class="container">
+            <h2 class="section-title">Your Dashboard</h2>
+            
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-ticket-alt"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>8</h3>
+                        <p>Total Tickets</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>2</h3>
+                        <p>Active</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>5</h3>
+                        <p>Resolved</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>1</h3>
+                        <p>Escalated</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tickets List -->
+            <div class="tickets-container">
+                <div class="section-header">
+                    <h3>Recent Tickets</h3>
+                    <button class="btn-small" onclick="showAllTickets()">
+                        View All <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <div class="tickets-list" id="ticketsList">
+                    <!-- Tickets will be added by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Create Ticket Section -->
+    <section class="create-ticket" id="create-ticket">
+        <div class="container">
+            <h2 class="section-title">Create New Ticket</h2>
+            <p class="section-subtitle">Describe your cyber issue. All information is encrypted and anonymous.</p>
+            
+            <div class="ticket-form">
+                <!-- Privacy Settings -->
+                <div class="form-section">
+                    <div class="section-header">
+                        <i class="fas fa-user-secret"></i>
+                        <h3>Privacy Settings</h3>
+                    </div>
+                    <div class="privacy-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="anonymous" checked>
+                            <span class="checkmark"></span>
+                            <span class="label-text">
+                                <strong>Stay Anonymous</strong>
+                                <small>Experts will see your ticket but not your identity</small>
+                            </span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="blurSensitive" checked>
+                            <span class="checkmark"></span>
+                            <span class="label-text">
+                                <strong>Auto-blur Sensitive Info</strong>
+                                <small>Automatically blur faces and sensitive data in evidence</small>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Issue Details -->
+                <div class="form-section">
+                    <div class="section-header">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>Issue Details</h3>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ticketTitle"><i class="fas fa-heading"></i> Title *</label>
+                        <input type="text" id="ticketTitle" placeholder="Briefly describe your issue" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ticketDescription"><i class="fas fa-file-alt"></i> Description *</label>
+                        <textarea id="ticketDescription" rows="4" placeholder="Provide detailed information about what happened, when it occurred, and any relevant details..." required></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="category"><i class="fas fa-tag"></i> Category *</label>
+                            <select id="category" required>
+                                <option value="phishing">🎣 Phishing Attack</option>
+                                <option value="hacking">💻 Account Hacking</option>
+                                <option value="fraud">💰 Financial Fraud</option>
+                                <option value="bullying">😔 Cyber Bullying</option>
+                                <option value="breach">🔓 Data Breach</option>
+                                <option value="malware">🦠 Malware/Virus</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label><i class="fas fa-fire"></i> Severity *</label>
+                            <div class="severity-buttons">
+                                <button type="button" class="severity-btn low" onclick="selectSeverity('low')">Low</button>
+                                <button type="button" class="severity-btn medium active" onclick="selectSeverity('medium')">Medium</button>
+                                <button type="button" class="severity-btn high" onclick="selectSeverity('high')">High</button>
+                                <button type="button" class="severity-btn critical" onclick="selectSeverity('critical')">Critical</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Evidence Upload -->
+                <div class="form-section">
+                    <div class="section-header">
+                        <i class="fas fa-upload"></i>
+                        <h3>Evidence (Optional)</h3>
+                    </div>
+                    
+                    <div class="upload-area" id="uploadArea">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drop files here or click to upload</p>
+                        <p class="upload-hint">Screenshots, emails, messages (Max 10MB each)</p>
+                        <input type="file" id="fileInput" multiple accept="image/*,.pdf,.doc,.docx" onchange="handleFileUpload()">
+                        <label for="fileInput" class="btn-secondary">Choose Files</label>
+                    </div>
+                    
+                    <div class="file-list" id="fileList">
+                        <!-- Files will be listed here -->
+                    </div>
+                </div>
+
+                <!-- Submit -->
+                <div class="form-section submit-section">
+                    <div class="security-notice">
+                        <i class="fas fa-lock"></i>
+                        <div>
+                            <strong>All data is encrypted and secure</strong>
+                            <p>Your information is protected with end-to-end encryption</p>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-primary btn-large" onclick="createTicket()">
+                        <i class="fas fa-shield-alt"></i> Create Secure Ticket
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experts Section -->
+    <section class="experts" id="experts">
+        <div class="container">
+            <h2 class="section-title">Our Verified Experts</h2>
+            <p class="section-subtitle">Get help from certified cyber security professionals</p>
+            
+            <div class="experts-grid" id="expertsGrid">
+                <!-- Experts will be added by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Safety Tools Section -->
+    <section class="tools" id="tools">
+        <div class="container">
+            <h2 class="section-title">Cyber Safety Tools</h2>
+            
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>URL Scanner</h3>
+                    <p>Check if a website is safe before visiting</p>
+                    <div class="tool-input">
+                        <input type="text" id="urlInput" placeholder="Enter website URL">
+                        <button class="btn-small" onclick="scanURL()">Scan</button>
+                    </div>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email Checker</h3>
+                    <p>Verify suspicious emails for phishing attempts</p>
+                    <button class="btn-primary" onclick="checkEmail()">
+                        <i class="fas fa-shield-alt"></i> Check Email
+                    </button>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h3>Password Strength</h3>
+                    <p>Test how strong your password is</p>
+                    <div class="tool-input">
+                        <input type="password" id="passwordInput" placeholder="Enter password">
+                        <div class="strength-meter">
+                            <div class="strength-bar" id="strengthBar"></div>
+                        </div>
+                        <span class="strength-text" id="strengthText">Weak</span>
+                    </div>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Emergency Guide</h3>
+                    <p>Step-by-step help for urgent situations</p>
+                    <button class="btn-primary" onclick="showEmergencyGuide()">
+                        <i class="fas fa-first-aid"></i> View Guide
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Emergency Guide Modal -->
+    <div class="modal" id="emergencyModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-first-aid"></i> Emergency Cyber Attack Guide</h2>
+                <button class="close-btn" onclick="closeEmergencyGuide()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="emergency-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Don't Panic</h3>
+                            <p>Take a deep breath. Panic can lead to mistakes.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Disconnect Internet</h3>
+                            <p>Turn off WiFi and mobile data to prevent further damage.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Change Passwords</h3>
+                            <p>Use another device to change critical passwords.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Contact Experts</h3>
+                            <p>Create a ticket above to get immediate expert help.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="emergency-contacts">
+                    <h3><i class="fas fa-phone-alt"></i> Immediate Contacts</h3>
+                    <div class="contact-buttons">
+                        <button class="btn-primary">
+                            <i class="fas fa-exclamation-triangle"></i> Cyber Crime Portal
+                        </button>
+                        <button class="btn-secondary">
+                            <i class="fas fa-building"></i> Local Police
+                        </button>
+                        <button class="btn-primary" onclick="createTicket()">
+                            <i class="fas fa-user-shield"></i> Expert Help
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-shield-alt"></i>
+                    <h2>CyberShield</h2>
+                    <p>Your digital safety partner</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <a href="#"><i class="fas fa-chevron-right"></i> Home</a>
+                    <a href="#dashboard"><i class="fas fa-chevron-right"></i> Dashboard</a>
+                    <a href="#create-ticket"><i class="fas fa-chevron-right"></i> Create Ticket</a>
+                    <a href="#tools"><i class="fas fa-chevron-right"></i> Safety Tools</a>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Emergency Contact</h3>
+                    <p><i class="fas fa-phone"></i> 1930 (Cyber Crime Helpline)</p>
+                    <p><i class="fas fa-envelope"></i> help@cybershield.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 CyberShield. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <div class="notification-content">
+            <span id="notificationMessage"></span>
+            <button class="close-notification" onclick="hideNotification()">&times;</button>
+        </div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    
+    <!-- Utils -->
+    <script src="utils/firebase-config.js"></script>
+    <script>
+        // Initialize Firebase
+        firebase.initializeApp(window.firebaseConfig);
+        const db = firebase.firestore();
+        const auth = firebase.auth();
+    </script>
+    <script src="utils/api.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

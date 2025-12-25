@@ -1,0 +1,66 @@
+{
+  "users": [
+    {
+      "id": "user_101",
+      "username": "rahul_sharma",
+      "email": "rahul@example.com",
+      "role": "victim",
+      "isAnonymous": true,
+      "createdAt": "2024-01-10T14:30:00Z",
+      "lastLogin": "2024-01-18T10:25:00Z",
+      "tickets": ["TICKET_001"],
+      "savedPosts": ["post_2", "post_5", "post_8"],
+      "stats": {
+        "postsViewed": 45,
+        "ticketsCreated": 1,
+        "casesResolved": 0,
+        "postsLiked": 8,
+        "postsSaved": 3,
+        "timeSpent": "12.5 hours"
+      }
+    },
+    {
+      "id": "user_102",
+      "username": "priya_patel",
+      "email": "priya@example.com",
+      "role": "victim",
+      "isAnonymous": false,
+      "createdAt": "2024-01-05T11:20:00Z",
+      "lastLogin": "2024-01-18T09:10:00Z",
+      "tickets": ["TICKET_002"],
+      "savedPosts": ["post_1", "post_3", "post_6", "post_9"],
+      "stats": {
+        "postsViewed": 67,
+        "ticketsCreated": 1,
+        "casesResolved": 0,
+        "postsLiked": 12,
+        "postsSaved": 4,
+        "timeSpent": "18.3 hours"
+      }
+    },
+    {
+      "id": "user_103",
+      "username": "amit_kumar",
+      "email": "amit@example.com",
+      "role": "victim",
+      "isAnonymous": true,
+      "createdAt": "2023-12-28T16:45:00Z",
+      "lastLogin": "2024-01-17T22:30:00Z",
+      "tickets": ["TICKET_003"],
+      "savedPosts": ["post_4", "post_7", "post_10"],
+      "stats": {
+        "postsViewed": 89,
+        "ticketsCreated": 1,
+        "casesResolved": 1,
+        "postsLiked": 15,
+        "postsSaved": 3,
+        "timeSpent": "25.7 hours"
+      }
+    }
+  ],
+  "lastUpdated": "2024-01-18T00:00:00.000Z",
+  "stats": {
+    "totalUsers": 3,
+    "activeUsers": 3
+  }
+}

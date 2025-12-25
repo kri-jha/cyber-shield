@@ -1,0 +1,15 @@
+{
+  "tickets": [],
+  "lastUpdated": "2024-01-01T00:00:00.000Z",
+  "stats": {
+    "totalTickets": 0,
+    "openTickets": 0,
+    "assignedTickets": 0,
+    "inProgressTickets": 0,
+    "resolvedTickets": 0,
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  }
+}

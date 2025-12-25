@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Environment Variables
+.env
+backend/.env
+
+# Firebase Secrets
+backend/config/serviceAccountKey.json
+serviceAccountKey.json
+
+# Build Output
+dist/
+build/
+
+# IDE/OS files
+.DS_Store
+.vscode/

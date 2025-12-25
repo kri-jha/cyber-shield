@@ -1,0 +1,394 @@
+{
+  "posts": [
+    {
+      "id": "post_1",
+      "author": {
+        "name": "Dr. Sarah Wilson",
+        "role": "Cyber Security Expert",
+        "initials": "SW",
+        "isVerified": true,
+        "avatarColor": "#4361ee"
+      },
+      "category": "phishing",
+      "categoryLabel": "🎣 PHISHING ATTACK",
+      "title": "How I helped recover ₹50,000 from a fake bank call",
+      "description": "Victim received call from 'bank manager' asking for OTP to secure account. Caller ID showed bank's actual number (spoofed).",
+      "solution": [
+        "Immediately blocked all debit/credit cards via mobile banking",
+        "Filed complaint on cybercrime.gov.in with call recordings",
+        "Contacted bank's 24x7 fraud helpline for transaction freeze",
+        "Changed all banking passwords and enabled 2FA",
+        "Registered complaint with local cyber crime cell"
+      ],
+      "prevention": [
+        "Banks NEVER call asking for OTP/CVV/Password",
+        "Verify caller by disconnecting and calling bank's official number",
+        "Enable transaction alerts for all banking activities",
+        "Use virtual cards for online payments",
+        "Never share screen during bank calls"
+      ],
+      "stats": {
+        "likes": 245,
+        "comments": 42,
+        "shares": 89,
+        "saves": 156,
+        "helpful": 98
+      },
+      "timestamp": "2 hours ago",
+      "severity": "high",
+      "tags": ["bank-fraud", "otp-scam", "financial-safety", "spoofing"],
+      "color": "#4361ee"
+    },
+    {
+      "id": "post_2",
+      "author": {
+        "name": "Alex Johnson",
+        "role": "Digital Forensics Specialist",
+        "initials": "AJ",
+        "isVerified": true,
+        "avatarColor": "#7209b7"
+      },
+      "category": "hacking",
+      "categoryLabel": "💻 ACCOUNT HACKING",
+      "title": "Instagram account hacked & used for crypto scams - Full recovery in 6 hours",
+      "description": "Hacker changed email, password, and started DMing followers with fake crypto investment offers. Account recovery completed within 6 hours.",
+      "solution": [
+        "Used Instagram's 'My account was hacked' feature immediately",
+        "Submitted government ID proof for identity verification",
+        "Asked friends to report account as hacked",
+        "Checked 'Apps and Websites' section & removed suspicious access",
+        "Enabled two-factor authentication with authenticator app"
+      ],
+      "prevention": [
+        "Use password manager with unique 16+ character passwords",
+        "Enable 2FA with authenticator app (not SMS)",
+        "Regularly review active sessions and logged-in devices",
+        "Be cautious of 'login via Instagram' on third-party sites",
+        "Backup recovery codes in secure location"
+      ],
+      "stats": {
+        "likes": 321,
+        "comments": 56,
+        "shares": 124,
+        "saves": 198,
+        "helpful": 96
+      },
+      "timestamp": "5 hours ago",
+      "severity": "critical",
+      "tags": ["instagram", "social-media", "account-recovery", "crypto-scam"],
+      "color": "#7209b7"
+    },
+    {
+      "id": "post_3",
+      "author": {
+        "name": "CyberShield Team",
+        "role": "Official Awareness",
+        "initials": "CS",
+        "isVerified": true,
+        "avatarColor": "#f72585"
+      },
+      "category": "fraud",
+      "categoryLabel": "💰 FINANCIAL FRAUD",
+      "title": "⚠️ URGENT: New Flipkart/Amazon delivery scam - ₹8,90,000 saved for 23 victims",
+      "description": "Scammers posing as delivery agents calling for 'advance payment' saying COD not available. Young working professionals being targeted.",
+      "solution": [
+        "Never make advance payment to delivery person",
+        "Cancel order if COD not available and reorder",
+        "Report suspicious calls to e-commerce customer care",
+        "Use only official payment methods (UPI/Net Banking)",
+        "Verify order status on official app before payment"
+      ],
+      "prevention": [
+        "Save official customer care numbers in contacts",
+        "Enable order notifications on e-commerce apps",
+        "Check seller ratings and reviews before ordering",
+        "Use e-commerce gift cards for payments",
+        "Keep screenshot of order confirmation"
+      ],
+      "stats": {
+        "likes": 432,
+        "comments": 89,
+        "shares": 210,
+        "saves": 345,
+        "helpful": 95
+      },
+      "timestamp": "1 day ago",
+      "severity": "high",
+      "tags": ["ecommerce", "delivery-scam", "online-shopping", "upi-fraud"],
+      "color": "#f72585"
+    },
+    {
+      "id": "post_4",
+      "author": {
+        "name": "Priya Sharma",
+        "role": "Cyber Crime Legal Advisor",
+        "initials": "PS",
+        "isVerified": true,
+        "avatarColor": "#4cc9f0"
+      },
+      "category": "bullying",
+      "categoryLabel": "😔 CYBER BULLYING",
+      "title": "College student facing online harassment - Legal action success story",
+      "description": "18-year old student being bullied on WhatsApp groups with morphed images. Perpetrators creating fake profiles to spread rumors.",
+      "solution": [
+        "Documented all evidence (600+ screenshots with timestamps)",
+        "Filed police complaint under IT Act Section 66A & 67",
+        "Obtained restraining order from local court",
+        "Worked with college administration for disciplinary action",
+        "Provided counseling and mental health support"
+      ],
+      "prevention": [
+        "Use WhatsApp privacy settings (last seen, profile photo)",
+        "Block and report without engaging with bullies",
+        "Save evidence before blocking/removing from groups",
+        "Talk to trusted adults/parents immediately",
+        "Join online safety workshops in colleges"
+      ],
+      "stats": {
+        "likes": 178,
+        "comments": 45,
+        "shares": 92,
+        "saves": 167,
+        "helpful": 91
+      },
+      "timestamp": "2 days ago",
+      "severity": "medium",
+      "tags": ["teen-safety", "legal-help", "whatsapp", "college-safety"],
+      "color": "#4cc9f0"
+    },
+    {
+      "id": "post_5",
+      "author": {
+        "name": "Mike Chen",
+        "role": "Social Media Security Expert",
+        "initials": "MC",
+        "isVerified": true,
+        "avatarColor": "#f8961e"
+      },
+      "category": "job-fraud",
+      "categoryLabel": "💼 JOB OFFER SCAM",
+      "title": "WFH job scam - ₹25,000 'registration fee' recovered",
+      "description": "Victim paid registration fee for 'data entry job' promising ₹35,000/month. Company website was fake with stolen credentials.",
+      "solution": [
+        "Filed complaint on cybercrime portal with payment details",
+        "Contacted payment gateway for refund request",
+        "Reported fake company website to hosting provider",
+        "Shared awareness in job seeker Telegram groups",
+        "Traced UPI transaction to temporary account"
+      ],
+      "prevention": [
+        "Legitimate companies NEVER ask for registration fees",
+        "Research company on MCA portal for registration details",
+        "Check employee reviews on LinkedIn and Glassdoor",
+        "Verify email domain matches company website",
+        "Start with video interview before any payment"
+      ],
+      "stats": {
+        "likes": 156,
+        "comments": 38,
+        "shares": 78,
+        "saves": 145,
+        "helpful": 89
+      },
+      "timestamp": "3 days ago",
+      "severity": "medium",
+      "tags": ["job-scam", "work-from-home", "online-fraud", "student-alert"],
+      "color": "#f8961e"
+    },
+    {
+      "id": "post_6",
+      "author": {
+        "name": "Rajesh Kumar",
+        "role": "Financial Fraud Investigator",
+        "initials": "RK",
+        "isVerified": true,
+        "avatarColor": "#7209b7"
+      },
+      "category": "investment",
+      "categoryLabel": "📈 INVESTMENT SCAM",
+      "title": "Fake crypto investment platform - ₹2,00,000 recovered within 72 hours",
+      "description": "Platform promised 5% daily returns on Bitcoin investments. Website looked professional with fake testimonials and 'SEBI registered' badge.",
+      "solution": [
+        "Traced cryptocurrency wallet addresses using blockchain explorer",
+        "Coordinated with Indian crypto exchange for KYC details",
+        "Filed detailed FIR with economic offenses wing",
+        "Contacted SEBI for fraudulent registration claim",
+        "Managed to freeze and recover 85% of funds"
+      ],
+      "prevention": [
+        "Only invest through SEBI registered platforms",
+        "Avoid 'guaranteed returns' promises (red flag)",
+        "Research company registration on MCA website",
+        "Start with small test amounts before large investments",
+        "Use hardware wallets for crypto storage"
+      ],
+      "stats": {
+        "likes": 289,
+        "comments": 67,
+        "shares": 134,
+        "saves": 234,
+        "helpful": 94
+      },
+      "timestamp": "1 week ago",
+      "severity": "critical",
+      "tags": ["crypto-scam", "investment", "bitcoin", "financial-literacy"],
+      "color": "#7209b7"
+    },
+    {
+      "id": "post_7",
+      "author": {
+        "name": "Alex Johnson",
+        "role": "Digital Forensics",
+        "initials": "AJ",
+        "isVerified": true,
+        "avatarColor": "#4361ee"
+      },
+      "category": "whatsapp",
+      "categoryLabel": "💬 WHATSAPP HACK",
+      "title": "WhatsApp account stolen - Used to ask money from all contacts",
+      "description": "Hacker took over WhatsApp via SIM swap, sent emergency money requests to all contacts pretending to be victim in hospital.",
+      "solution": [
+        "Immediately informed all contacts via SMS/call about hack",
+        "Contacted telecom provider for SIM block & new SIM",
+        "Used WhatsApp's 2-step verification recovery option",
+        "Checked linked devices and removed all unknown sessions",
+        "Educated contacts about such emergency scams"
+      ],
+      "prevention": [
+        "Never share 6-digit verification code with anyone",
+        "Enable two-step verification with PIN in WhatsApp",
+        "Set up biometric lock for WhatsApp",
+        "Be careful with WhatsApp Web QR codes",
+        "Regularly check linked devices in WhatsApp settings"
+      ],
+      "stats": {
+        "likes": 321,
+        "comments": 89,
+        "shares": 156,
+        "saves": 278,
+        "helpful": 96
+      },
+      "timestamp": "1 week ago",
+      "severity": "high",
+      "tags": ["whatsapp", "sim-swap", "emergency-scam", "messaging"],
+      "color": "#4361ee"
+    },
+    {
+      "id": "post_8",
+      "author": {
+        "name": "CyberShield Team",
+        "role": "Official Awareness",
+        "initials": "CS",
+        "isVerified": true,
+        "avatarColor": "#f72585"
+      },
+      "category": "loan",
+      "categoryLabel": "🏦 FAKE LOAN APP",
+      "title": "Warning: Fake loan apps accessing gallery & blackmailing users",
+      "description": "Apps offering 'instant loans' then accessing gallery/contacts and threatening to share personal photos if loan not repaid with 50% interest.",
+      "solution": [
+        "Helped uninstall malicious apps and clear data",
+        "Reset all Android app permissions from settings",
+        "Filed police complaint with app details and screenshots",
+        "Reported apps to Google Play Store with evidence",
+        "Provided digital cleaning steps for device security"
+      ],
+      "prevention": [
+        "Only download apps from official Play Store/App Store",
+        "Check app reviews and developer information",
+        "Review permission requests before installation",
+        "Avoid 'instant loan without documents' promises",
+        "Use RBI registered NBFC apps only for loans"
+      ],
+      "stats": {
+        "likes": 412,
+        "comments": 123,
+        "shares": 245,
+        "saves": 367,
+        "helpful": 97
+      },
+      "timestamp": "2 weeks ago",
+      "severity": "critical",
+      "tags": ["loan-apps", "privacy", "mobile-security", "blackmail"],
+      "color": "#f72585"
+    },
+    {
+      "id": "post_9",
+      "author": {
+        "name": "Dr. Sarah Wilson",
+        "role": "Cyber Security Expert",
+        "initials": "SW",
+        "isVerified": true,
+        "avatarColor": "#4cc9f0"
+      },
+      "category": "online-shopping",
+      "categoryLabel": "🛍️ ONLINE SHOPPING",
+      "title": "Facebook Marketplace scam - Paid but product never delivered",
+      "description": "Victim paid via UPI for iPhone on Facebook Marketplace. Seller blocked after payment, profile was fake with stolen photos.",
+      "solution": [
+        "Filed UPI fraud complaint with bank providing UPI ID",
+        "Reported fake profile to Facebook with payment proof",
+        "Contacted NPCI for transaction dispute",
+        "Shared seller details in local buy/sell groups",
+        "Helped file police complaint with digital evidence"
+      ],
+      "prevention": [
+        "Meet in person for Facebook Marketplace transactions",
+        "Use COD option for first-time sellers",
+        "Check profile age, friends, and previous reviews",
+        "Avoid too-good-to-be-true deals",
+        "Use Facebook's purchase protection feature"
+      ],
+      "stats": {
+        "likes": 198,
+        "comments": 56,
+        "shares": 102,
+        "saves": 189,
+        "helpful": 92
+      },
+      "timestamp": "2 weeks ago",
+      "severity": "medium",
+      "tags": ["facebook", "marketplace", "upi-fraud", "online-shopping"],
+      "color": "#4cc9f0"
+    },
+    {
+      "id": "post_10",
+      "author": {
+        "name": "Ananya Patel",
+        "role": "Women's Cyber Safety Expert",
+        "initials": "AP",
+        "isVerified": true,
+        "avatarColor": "#f8961e"
+      },
+      "category": "online-dating",
+      "categoryLabel": "❤️ DATING SCAM",
+      "title": "Romance scam on dating app - ₹3,50,000 emotional fraud prevented",
+      "description": "Scammer built emotional connection over 3 months, then asked for money for 'medical emergency'. Victim was about to transfer funds.",
+      "solution": [
+        "Conducted reverse image search on profile photos",
+        "Found same photos on multiple dating platforms",
+        "Analyzed chat patterns showing scammer script",
+        "Provided emotional support and counseling",
+        "Helped secure social media accounts from stalkers"
+      ],
+      "prevention": [
+        "Never send money to someone you haven't met in person",
+        "Do video calls to verify identity",
+        "Reverse image search profile pictures",
+        "Be cautious of too-perfect profiles",
+        "Share dating experiences with trusted friends"
+      ],
+      "stats": {
+        "likes": 267,
+        "comments": 78,
+        "shares": 145,
+        "saves": 223,
+        "helpful": 93
+      },
+      "timestamp": "3 weeks ago",
+      "severity": "high",
+      "tags": ["dating-scam", "romance-fraud", "emotional-support", "women-safety"],
+      "color": "#f8961e"
+    }
+  ]
+}

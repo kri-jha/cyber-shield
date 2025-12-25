@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Chat - CyberShield</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .chat-container {
+            max-width: 800px;
+            margin: 80px auto 40px;
+            padding: 0 15px;
+            height: calc(100vh - 120px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 20px;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .chat-header {
+            background: white;
+            border-radius: 15px 15px 0 0;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .chat-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 20px;
+        }
+
+        .chat-user h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .chat-user p {
+            font-size: 14px;
+            color: #6b7280;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .online-dot {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .chat-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-action-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: #f3f4f6;
+            color: #4b5563;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .chat-action-btn:hover {
+            background: #e5e7eb;
+        }
+
+        .chat-messages {
+            flex: 1;
+            background: white;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 70%;
+            padding: 15px;
+            border-radius: 15px;
+            position: relative;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.sent {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .message.received {
+            background: #f3f4f6;
+            color: #1f2937;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        .message-content {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .message-time {
+            font-size: 12px;
+            opacity: 0.7;
+            text-align: right;
+        }
+
+        .message.sent .message-time {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .message.received .message-time {
+            color: #6b7280;
+        }
+
+        .message-system {
+            align-self: center;
+            background: #fef3c7;
+            color: #92400e;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            max-width: 80%;
+            text-align: center;
+        }
+
+        .chat-input {
+            background: white;
+            border-radius: 0 0 15px 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .input-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .input-action-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: #f3f4f6;
+            color: #4b5563;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .input-action-btn:hover {
+            background: #e5e7eb;
+        }
+
+        .message-input {
+            flex: 1;
+            padding: 12px 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 25px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .message-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .send-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+        }
+
+        .send-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-sidebar {
+            position: fixed;
+            right: 20px;
+            top: 100px;
+            width: 300px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            padding: 20px;
+            display: none;
+        }
+
+        .chat-sidebar.active {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-header h3 {
+            font-size: 16px;
+            color: #1f2937;
+        }
+
+        .close-sidebar {
+            background: none;
+            border: none;
+            color: #6b7280;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .sidebar-section {
+            margin-bottom: 25px;
+        }
+
+        .sidebar-section h4 {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .evidence-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: #f8fafc;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .evidence-item:hover {
+            background: #e0e7ff;
+        }
+
+        .evidence-item i {
+            color: #3b82f6;
+        }
+
+        .quick-responses {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .quick-response {
+            padding: 10px 15px;
+            background: #f3f4f6;
+            border-radius: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            text-align: left;
+        }
+
+        .quick-response:hover {
+            background: #e0e7ff;
+            transform: translateX(5px);
+        }
+
+        .security-notice {
+            padding: 15px;
+            background: #f0f9ff;
+            border-radius: 10px;
+            border-left: 4px solid #3b82f6;
+            font-size: 12px;
+            color: #1e40af;
+        }
+
+        .security-notice i {
+            margin-right: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .chat-sidebar {
+                display: none !important;
+            }
+            
+            .chat-actions {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Include Navbar -->
+    <div id="navbar-container"></div>
+
+    <script>
+    // Load navbar content
+    fetch('navbar.html')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('navbar-container').innerHTML = html;
+        })
+        .catch(error => console.error('Error loading navbar:', error));
+    </script>
+    <div class="chat-container">
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Feed
+        </a>
+
+        <!-- Chat Header -->
+        <div class="chat-header">
+            <div class="chat-info">
+                <div class="chat-avatar">SW</div>
+                <div class="chat-user">
+                    <h3>Dr. Sarah Wilson <i class="fas fa-check-circle" style="color: #3b82f6; font-size: 14px;"></i></h3>
+                    <p><span class="online-dot"></span> Online • Cyber Security Expert</p>
+                </div>
+            </div>
+            
+            <div class="chat-actions">
+                <button class="chat-action-btn" onclick="toggleSidebar('info')">
+                    <i class="fas fa-info-circle"></i>
+                </button>
+                <button class="chat-action-btn" onclick="toggleSidebar('files')">
+                    <i class="fas fa-paperclip"></i>
+                </button>
+                <button class="chat-action-btn" onclick="toggleEncryption()">
+                    <i class="fas fa-lock"></i>
+                </button>
+                <button class="chat-action-btn" onclick="endChat()">
+                    <i class="fas fa-phone-slash"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Chat Messages -->
+        <div class="chat-messages" id="chatMessages">
+            <div class="message-system">
+                <i class="fas fa-shield-alt"></i> This chat is end-to-end encrypted. Messages are secure.
+            </div>
+            
+            <div class="message received">
+                <div class="message-content">
+                    Hello! I'm Sarah, your assigned cyber security expert. I understand you're facing an issue with your Facebook account. Can you tell me more about what happened?
+                </div>
+                <div class="message-time">10:30 AM</div>
+            </div>
+            
+            <div class="message sent">
+                <div class="message-content">
+                    Hi Sarah. Yes, someone hacked my Facebook account yesterday. They changed the password and recovery email. I can't login anymore.
+                </div>
+                <div class="message-time">10:32 AM</div>
+            </div>
+            
+            <div class="message received">
+                <div class="message-content">
+                    I understand. First, don't panic. Have you tried using Facebook's account recovery process? Also, did you have two-factor authentication enabled?
+                </div>
+                <div class="message-time">10:33 AM</div>
+            </div>
+            
+            <div class="message sent">
+                <div class="message-content">
+                    I tried recovery but it asks for an email I don't recognize. No, I didn't have 2FA enabled unfortunately.
+                </div>
+                <div class="message-time">10:35 AM</div>
+            </div>
+            
+            <div class="message received">
+                <div class="message-content">
+                    Okay, we'll need to go through the official verification process. I'll guide you step-by-step. First, go to facebook.com/hacked and click "My Account Is Compromised".
+                </div>
+                <div class="message-time">10:36 AM</div>
+            </div>
+        </div>
+
+        <!-- Chat Input -->
+        <div class="chat-input">
+            <div class="input-actions">
+                <button class="input-action-btn" onclick="attachFile()">
+                    <i class="fas fa-paperclip"></i>
+                </button>
+                <button class="input-action-btn" onclick="attachImage()">
+                    <i class="fas fa-image"></i>
+                </button>
+                <button class="input-action-btn" onclick="showQuickResponses()">
+                    <i class="fas fa-bolt"></i>
+                </button>
+            </div>
+            
+            <input type="text" class="message-input" id="messageInput" placeholder="Type your message..." onkeypress="handleKeyPress(event)">
+            
+            <button class="send-btn" onclick="sendMessage()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="chat-sidebar" id="chatSidebar">
+        <div class="sidebar-header">
+            <h3 id="sidebarTitle">Chat Information</h3>
+            <button class="close-sidebar" onclick="closeSidebar()">&times;</button>
+        </div>
+        
+        <div id="sidebarContent">
+            <!-- Content will be loaded here -->
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+            <div class="logo-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="logo-text">CyberShield</div>
+        </a>
+        
+        <div class="nav-links">
+            <a href="index.html" class="nav-link active">Feed</a>
+            <a href="feed.html" class="nav-link">Explore</a>
+            <a href="experts.html" class="nav-link">Experts</a>
+            <a href="tools.html" class="nav-link">Tools</a>
+            <a href="create.html" class="nav-link">Get Help</a>
+        </div>
+        
+        <div class="nav-actions">
+            <button class="btn btn-outline btn-small">
+                <i class="fas fa-user"></i> Login
+            </button>
+            <button class="btn btn-primary btn-small">
+                <i class="fas fa-plus"></i> New Case
+            </button>
+        </div>
+        
+        <button class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+</nav>
+
+    <script src="script.js"></script>
+    <script>
+        // Quick Responses
+        const quickResponses = [
+            "Yes, I understand",
+            "No, that didn't work",
+            "Can you explain more?",
+            "I need more time",
+            "Please send the link",
+            "Where do I click?",
+            "I'm following your steps",
+            "This is working now",
+            "I need urgent help",
+            "Thank you for helping"
+        ];
+
+        // Evidence files
+        const evidenceFiles = [
+            { name: "screenshot-1.png", type: "image", size: "2.4 MB" },
+            { name: "phishing-email.txt", type: "file", size: "15 KB" },
+            { name: "bank-statement.pdf", type: "pdf", size: "1.8 MB" },
+            { name: "whatsapp-chat.png", type: "image", size: "3.2 MB" }
+        ];
+
+        // Chat messages
+        let messages = [
+            { type: "system", content: "This chat is end-to-end encrypted. Messages are secure.", time: "10:29 AM" },
+            { type: "received", content: "Hello! I'm Sarah, your assigned cyber security expert. I understand you're facing an issue with your Facebook account. Can you tell me more about what happened?", time: "10:30 AM" },
+            { type: "sent", content: "Hi Sarah. Yes, someone hacked my Facebook account yesterday. They changed the password and recovery email. I can't login anymore.", time: "10:32 AM" },
+            { type: "received", content: "I understand. First, don't panic. Have you tried using Facebook's account recovery process? Also, did you have two-factor authentication enabled?", time: "10:33 AM" },
+            { type: "sent", content: "I tried recovery but it asks for an email I don't recognize. No, I didn't have 2FA enabled unfortunately.", time: "10:35 AM" },
+            { type: "received", content: "Okay, we'll need to go through the official verification process. I'll guide you step-by-step. First, go to facebook.com/hacked and click 'My Account Is Compromised'.", time: "10:36 AM" }
+        ];
+
+        // Initialize chat
+        document.addEventListener('DOMContentLoaded', function() {
+            scrollToBottom();
+            
+            // Add welcome message if no messages
+            if (messages.length <= 6) {
+                setTimeout(() => {
+                    addMessage('received', "I see you're online. Would you like to continue with the Facebook account recovery steps?", true);
+                }, 3000);
+            }
+        });
+
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Add message to chat
+            addMessage('sent', message);
+            input.value = '';
+            
+            // Simulate expert response after delay
+            setTimeout(() => {
+                const responses = [
+                    "I understand. Let's proceed to the next step.",
+                    "Okay, please send me a screenshot of what you see.",
+                    "That's correct. Now click on the 'Secure My Account' button.",
+                    "Perfect! I'll help you set up two-factor authentication after recovery.",
+                    "Have you received the verification code on your phone?",
+                    "Great! Now change your password to something strong and unique."
+                ];
+                
+                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                addMessage('received', randomResponse);
+            }, 1500);
+        }
+
+        function addMessage(type, content, isSystem = false) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            
+            const messageDiv = document.createElement('div');
+            
+            if (isSystem) {
+                messageDiv.className = 'message-system';
+                messageDiv.innerHTML = `<i class="fas fa-shield-alt"></i> ${content}`;
+            } else {
+                messageDiv.className = `message ${type}`;
+                messageDiv.innerHTML = `
+                    <div class="message-content">${content}</div>
+                    <div class="message-time">${time}</div>
+                `;
+                
+                // Add to messages array
+                messages.push({ type, content, time });
+            }
+            
+            messagesContainer.appendChild(messageDiv);
+            scrollToBottom();
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function scrollToBottom() {
+            const messagesContainer = document.getElementById('chatMessages');
+            if (messagesContainer) {
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+        }
+
+        // Sidebar functions
+        function toggleSidebar(type) {
+            const sidebar = document.getElementById('chatSidebar');
+            const sidebarContent = document.getElementById('sidebarContent');
+            const sidebarTitle = document.getElementById('sidebarTitle');
+            
+            if (sidebar.classList.contains('active') && sidebar.dataset.type === type) {
+                closeSidebar();
+                return;
+            }
+            
+            sidebar.dataset.type = type;
+            sidebar.classList.add('active');
+            
+            if (type === 'info') {
+                sidebarTitle.textContent = 'Chat Information';
+                sidebarContent.innerHTML = `
+                    <div class="sidebar-section">
+                        <h4><i class="fas fa-user-shield"></i> Expert Information</h4>
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                            <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #3b82f6, #8b5cf6); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">SW</div>
+                            <div>
+                                <strong>Dr. Sarah Wilson</strong>
+                                <p style="font-size: 12px; color: #6b7280; margin-top: 2px;">Senior Cyber Security Expert</p>
+                            </div>
+                        </div>
+                        <p style="font-size: 14px; color: #4b5563; line-height: 1.5;">
+                            Specialized in account recovery and phishing attacks. 8+ years experience.
+                        </p>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h4><i class="fas fa-chart-line"></i> Case Progress</h4>
+                        <div style="background: #f3f4f6; border-radius: 10px; padding: 15px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span style="font-size: 14px;">Case Resolution</span>
+                                <span style="font-weight: 600; color: #3b82f6;">60%</span>
+                            </div>
+                            <div style="height: 6px; background: #e5e7eb; border-radius: 3px; overflow: hidden;">
+                                <div style="width: 60%; height: 100%; background: linear-gradient(135deg, #3b82f6, #8b5cf6);"></div>
+                            </div>
+                            <p style="font-size: 12px; color: #6b7280; margin-top: 10px;">
+                                Estimated completion: 2-3 hours
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="security-notice">
+                        <i class="fas fa-lock"></i>
+                        <strong>End-to-End Encryption Active</strong>
+                        <p style="margin-top: 5px; font-size: 11px;">Messages, files, and calls are secured with 256-bit encryption</p>
+                    </div>
+                `;
+            } else if (type === 'files') {
+                sidebarTitle.textContent = 'Evidence Files';
+                sidebarContent.innerHTML = `
+                    <div class="sidebar-section">
+                        <h4><i class="fas fa-paperclip"></i> Attached Files</h4>
+                        ${evidenceFiles.map(file => `
+                            <div class="evidence-item" onclick="viewFile('${file.name}')">
+                                <i class="fas fa-${file.type === 'image' ? 'image' : file.type === 'pdf' ? 'file-pdf' : 'file'}"></i>
+                                <div style="flex: 1;">
+                                    <div style="font-weight: 500; font-size: 14px;">${file.name}</div>
+                                    <div style="font-size: 12px; color: #6b7280;">${file.size}</div>
+                                </div>
+                                <i class="fas fa-download" style="color: #3b82f6;"></i>
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h4><i class="fas fa-upload"></i> Upload New</h4>
+                        <div style="border: 2px dashed #d1d5db; border-radius: 10px; padding: 20px; text-align: center; cursor: pointer;" onclick="uploadFile()">
+                            <i class="fas fa-cloud-upload-alt" style="font-size: 24px; color: #9ca3af; margin-bottom: 10px;"></i>
+                            <p style="font-size: 14px; color: #4b5563;">Click to upload evidence</p>
+                            <p style="font-size: 12px; color: #9ca3af;">Max 10MB per file</p>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function closeSidebar() {
+            document.getElementById('chatSidebar').classList.remove('active');
+        }
+
+        function showQuickResponses() {
+            const sidebar = document.getElementById('chatSidebar');
+            const sidebarContent = document.getElementById('sidebarContent');
+            const sidebarTitle = document.getElementById('sidebarTitle');
+            
+            sidebar.dataset.type = 'quick';
+            sidebar.classList.add('active');
+            sidebarTitle.textContent = 'Quick Responses';
+            
+            sidebarContent.innerHTML = `
+                <div class="sidebar-section">
+                    <h4><i class="fas fa-bolt"></i> Quick Reply</h4>
+                    <div class="quick-responses">
+                        ${quickResponses.map(response => `
+                            <button class="quick-response" onclick="useQuickResponse('${response}')">
+                                ${response}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function useQuickResponse(response) {
+            document.getElementById('messageInput').value = response;
+            closeSidebar();
+        }
+
+        function viewFile(filename) {
+            showNotification(`Opening ${filename}...`, 'info');
+            // In real app, this would open/preview the file
+        }
+
+        function uploadFile() {
+            showNotification('File upload feature will be implemented in next version', 'info');
+        }
+
+        function attachFile() {
+            showNotification('Select a file to attach', 'info');
+            // In real app, this would open file picker
+        }
+
+        function attachImage() {
+            showNotification('Select an image to attach', 'info');
+            // In real app, this would open image picker
+        }
+
+        function toggleEncryption() {
+            showNotification('End-to-end encryption is active. All messages are secure.', 'success');
+        }
+
+        function endChat() {
+            if (confirm('Are you sure you want to end this chat session?')) {
+                showNotification('Chat session ended. You can resume anytime.', 'info');
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1500);
+            }
+        }
+    </script>
+</body>
+</html>

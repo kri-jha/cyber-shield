@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experts - CyberShield</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .experts-container {
+            max-width: 1200px;
+            margin: 80px auto 40px;
+            padding: 0 15px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .experts-header {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .experts-header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .search-filter {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px 12px 45px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+        }
+
+        .filter-select {
+            padding: 12px 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 16px;
+            background: white;
+            min-width: 200px;
+        }
+
+        .experts-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 15px 25px;
+            background: #f8fafc;
+            border-radius: 10px;
+        }
+
+        .stat-box .number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #3b82f6;
+            display: block;
+        }
+
+        .stat-box .label {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .experts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .expert-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .expert-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: #3b82f6;
+        }
+
+        .expert-header {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            padding: 25px 20px;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .expert-verified {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: white;
+            color: #3b82f6;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .expert-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 4px solid white;
+            margin: 0 auto 15px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .expert-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .expert-header h3 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .expert-title {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .expert-rating {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .expert-rating .stars {
+            color: #fbbf24;
+        }
+
+        .expert-rating .score {
+            font-weight: 600;
+        }
+
+        .expert-body {
+            padding: 25px;
+        }
+
+        .expert-specialties {
+            margin-bottom: 20px;
+        }
+
+        .expert-specialties h4 {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .specialty-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .specialty-tag {
+            background: #e0e7ff;
+            color: #3b82f6;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .expert-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 10px;
+        }
+
+        .expert-stat {
+            text-align: center;
+        }
+
+        .expert-stat .value {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1f2937;
+            display: block;
+        }
+
+        .expert-stat .label {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .expert-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .assign-btn {
+            flex: 1;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .assign-btn:hover {
+            opacity: 0.9;
+        }
+
+        .message-btn {
+            width: 50px;
+            background: #10b981;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .message-btn:hover {
+            opacity: 0.9;
+        }
+
+        .availability {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .availability.online {
+            color: #10b981;
+        }
+
+        .availability.offline {
+            color: #6b7280;
+        }
+
+        .availability.busy {
+            color: #f59e0b;
+        }
+
+        @media (max-width: 768px) {
+            .experts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-filter {
+                flex-direction: column;
+            }
+            
+            .search-box {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="experts-container">
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Feed
+        </a>
+
+        <div class="experts-header">
+            <h1><i class="fas fa-user-shield"></i> Verified Cyber Security Experts</h1>
+            <p>Get help from certified professionals and legal advisors</p>
+            
+            <div class="search-filter">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchExperts" placeholder="Search experts by name, specialty...">
+                </div>
+                
+                <select class="filter-select" id="expertFilter">
+                    <option value="all">All Experts</option>
+                    <option value="online">Online Now</option>
+                    <option value="cyber-security">Cyber Security</option>
+                    <option value="legal">Legal Advisors</option>
+                    <option value="forensics">Digital Forensics</option>
+                    <option value="social-media">Social Media</option>
+                    <option value="financial">Financial Fraud</option>
+                </select>
+                
+                <button class="btn-primary" onclick="filterExperts()">
+                    <i class="fas fa-filter"></i> Filter
+                </button>
+            </div>
+            
+            <div class="experts-stats">
+                <div class="stat-box">
+                    <span class="number">42</span>
+                    <span class="label">Total Experts</span>
+                </div>
+                <div class="stat-box">
+                    <span class="number">28</span>
+                    <span class="label">Online Now</span>
+                </div>
+                <div class="stat-box">
+                    <span class="number">4.8</span>
+                    <span class="label">Average Rating</span>
+                </div>
+                <div class="stat-box">
+                    <span class="number">15</span>
+                    <span class="label">Legal Advisors</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="experts-grid" id="expertsList">
+            <!-- Experts loaded by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+            <div class="logo-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="logo-text">CyberShield</div>
+        </a>
+        
+        <div class="nav-links">
+            <a href="index.html" class="nav-link active">Feed</a>
+            <a href="feed.html" class="nav-link">Explore</a>
+            <a href="experts.html" class="nav-link">Experts</a>
+            <a href="tools.html" class="nav-link">Tools</a>
+            <a href="create.html" class="nav-link">Get Help</a>
+        </div>
+        
+        <div class="nav-actions">
+            <button class="btn btn-outline btn-small">
+                <i class="fas fa-user"></i> Login
+            </button>
+            <button class="btn btn-primary btn-small">
+                <i class="fas fa-plus"></i> New Case
+            </button>
+        </div>
+        
+        <button class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+</nav>
+    <script src="script.js"></script>
+    <script>
+        const experts = [
+            {
+                id: 1,
+                name: "Dr. Sarah Wilson",
+                title: "Senior Cyber Security Analyst",
+                specialties: ["Phishing Attacks", "Malware Analysis", "Data Breach", "Network Security"],
+                rating: 4.9,
+                casesSolved: 234,
+                responseTime: "15 min",
+                experience: "8 years",
+                availability: "online",
+                avatar: "SW",
+                bio: "Former cybersecurity head at multinational bank. Specialized in financial fraud prevention.",
+                isVerified: true
+            },
+            {
+                id: 2,
+                name: "Alex Johnson",
+                title: "Digital Forensics Specialist",
+                specialties: ["Hacking Incidents", "Data Recovery", "Mobile Forensics", "Incident Response"],
+                rating: 4.8,
+                casesSolved: 189,
+                responseTime: "20 min",
+                experience: "6 years",
+                availability: "online",
+                avatar: "AJ",
+                bio: "Certified digital forensics expert. Worked with law enforcement on cyber crime cases.",
+                isVerified: true
+            },
+            {
+                id: 3,
+                name: "Priya Sharma",
+                title: "Cyber Crime Legal Advisor",
+                specialties: ["Legal Procedures", "Police Complaints", "IT Act Cases", "Victim Rights"],
+                rating: 4.9,
+                casesSolved: 156,
+                responseTime: "30 min",
+                experience: "10 years",
+                availability: "busy",
+                avatar: "PS",
+                bio: "Practicing cyber law attorney. Helped draft cyber crime policies for government.",
+                isVerified: true
+            },
+            {
+                id: 4,
+                name: "Mike Chen",
+                title: "Social Media Security Expert",
+                specialties: ["Account Hacking", "Cyber Bullying", "Privacy Settings", "Content Removal"],
+                rating: 4.7,
+                casesSolved: 127,
+                responseTime: "25 min",
+                experience: "5 years",
+                availability: "online",
+                avatar: "MC",
+                bio: "Former social media platform security team member. Expert in account recovery.",
+                isVerified: true
+            },
+            {
+                id: 5,
+                name: "Rajesh Kumar",
+                title: "Financial Fraud Investigator",
+                specialties: ["UPI Frauds", "Online Banking", "Investment Scams", "Cryptocurrency"],
+                rating: 4.8,
+                casesSolved: 198,
+                responseTime: "10 min",
+                experience: "7 years",
+                availability: "online",
+                avatar: "RK",
+                bio: "Bank fraud investigation department veteran. Recovered millions in fraud cases.",
+                isVerified: true
+            },
+            {
+                id: 6,
+                name: "Ananya Patel",
+                title: "Women's Cyber Safety Expert",
+                specialties: ["Online Harassment", "Stalking Cases", "Image Privacy", "Digital Safety"],
+                rating: 4.9,
+                casesSolved: 145,
+                responseTime: "15 min",
+                experience: "6 years",
+                availability: "offline",
+                avatar: "AP",
+                bio: "Dedicated to women's cyber safety. Runs awareness workshops nationwide.",
+                isVerified: true,
+                gender: "female"
+            }
+        ];
+
+        // Load experts on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadExperts();
+        });
+
+        function loadExperts() {
+            const expertsList = document.getElementById('expertsList');
+            if (!expertsList) return;
+            
+            expertsList.innerHTML = '';
+            
+            experts.forEach(expert => {
+                const expertCard = createExpertCard(expert);
+                expertsList.appendChild(expertCard);
+            });
+        }
+
+        function createExpertCard(expert) {
+            const card = document.createElement('div');
+            card.className = 'expert-card';
+            card.dataset.id = expert.id;
+            
+            // Availability color
+            let availabilityColor = '#10b981';
+            let availabilityText = 'Online';
+            if (expert.availability === 'offline') {
+                availabilityColor = '#6b7280';
+                availabilityText = 'Offline';
+            } else if (expert.availability === 'busy') {
+                availabilityColor = '#f59e0b';
+                availabilityText = 'Busy';
+            }
+            
+            card.innerHTML = `
+                <div class="expert-header">
+                    ${expert.isVerified ? '<div class="expert-verified"><i class="fas fa-check"></i></div>' : ''}
+                    <div class="expert-avatar">
+                        <img src="https://ui-avatars.com/api/?name=${expert.avatar}&background=3b82f6&color=fff&size=100&bold=true" alt="${expert.name}">
+                    </div>
+                    <h3>${expert.name}</h3>
+                    <p class="expert-title">${expert.title}</p>
+                    <div class="expert-rating">
+                        <div class="stars">
+                            ${'★'.repeat(Math.floor(expert.rating))}${'☆'.repeat(5-Math.floor(expert.rating))}
+                        </div>
+                        <span class="score">${expert.rating}</span>
+                    </div>
+                </div>
+                <div class="expert-body">
+                    <div class="availability ${expert.availability}">
+                        <i class="fas fa-circle" style="color: ${availabilityColor}; font-size: 10px;"></i>
+                        ${availabilityText} • Responds in ${expert.responseTime}
+                    </div>
+                    
+                    <div class="expert-specialties">
+                        <h4><i class="fas fa-star"></i> Specialties</h4>
+                        <div class="specialty-tags">
+                            ${expert.specialties.map(spec => `<span class="specialty-tag">${spec}</span>`).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="expert-stats">
+                        <div class="expert-stat">
+                            <span class="value">${expert.casesSolved}</span>
+                            <span class="label">Cases Solved</span>
+                        </div>
+                        <div class="expert-stat">
+                            <span class="value">${expert.experience}</span>
+                            <span class="label">Experience</span>
+                        </div>
+                        <div class="expert-stat">
+                            <span class="value">${expert.responseTime}</span>
+                            <span class="label">Avg. Response</span>
+                        </div>
+                    </div>
+                    
+                    <p style="font-size: 14px; color: #6b7280; margin-bottom: 20px; line-height: 1.5;">
+                        <i class="fas fa-quote-left" style="color: #3b82f6; margin-right: 5px;"></i>
+                        ${expert.bio}
+                    </p>
+                    
+                    <div class="expert-actions">
+                        <button class="assign-btn" onclick="assignExpert(${expert.id})">
+                            <i class="fas fa-user-plus"></i> Request Help
+                        </button>
+                        <button class="message-btn" onclick="messageExpert(${expert.id})">
+                            <i class="fas fa-envelope"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        function filterExperts() {
+            const searchTerm = document.getElementById('searchExperts').value.toLowerCase();
+            const filterValue = document.getElementById('expertFilter').value;
+            
+            let filteredExperts = [...experts];
+            
+            // Apply search filter
+            if (searchTerm) {
+                filteredExperts = filteredExperts.filter(expert => 
+                    expert.name.toLowerCase().includes(searchTerm) ||
+                    expert.title.toLowerCase().includes(searchTerm) ||
+                    expert.specialties.some(spec => spec.toLowerCase().includes(searchTerm))
+                );
+            }
+            
+            // Apply category filter
+            if (filterValue !== 'all') {
+                if (filterValue === 'online') {
+                    filteredExperts = filteredExperts.filter(expert => expert.availability === 'online');
+                } else if (filterValue === 'cyber-security') {
+                    filteredExperts = filteredExperts.filter(expert => 
+                        expert.specialties.some(spec => 
+                            ['Phishing', 'Malware', 'Data Breach', 'Network Security'].some(keyword => spec.includes(keyword))
+                        )
+                    );
+                } else if (filterValue === 'legal') {
+                    filteredExperts = filteredExperts.filter(expert => 
+                        expert.title.toLowerCase().includes('legal') || 
+                        expert.specialties.some(spec => spec.includes('Legal'))
+                    );
+                } else if (filterValue === 'forensics') {
+                    filteredExperts = filteredExperts.filter(expert => 
+                        expert.title.toLowerCase().includes('forensics') ||
+                        expert.specialties.some(spec => spec.includes('Forensics'))
+                    );
+                } else if (filterValue === 'social-media') {
+                    filteredExperts = filteredExperts.filter(expert => 
+                        expert.title.toLowerCase().includes('social') ||
+                        expert.specialties.some(spec => spec.includes('Social'))
+                    );
+                } else if (filterValue === 'financial') {
+                    filteredExperts = filteredExperts.filter(expert => 
+                        expert.title.toLowerCase().includes('financial') ||
+                        expert.specialties.some(spec => spec.includes('Financial') || spec.includes('Fraud'))
+                    );
+                }
+            }
+            
+            // Update display
+            const expertsList = document.getElementById('expertsList');
+            if (expertsList) {
+                expertsList.innerHTML = '';
+                if (filteredExperts.length === 0) {
+                    expertsList.innerHTML = `
+                        <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #6b7280;">
+                            <i class="fas fa-search" style="font-size: 48px; margin-bottom: 20px;"></i>
+                            <h3>No experts found</h3>
+                            <p>Try different search terms or filters</p>
+                        </div>
+                    `;
+                } else {
+                    filteredExperts.forEach(expert => {
+                        expertsList.appendChild(createExpertCard(expert));
+                    });
+                }
+            }
+            
+            showNotification(`Found ${filteredExperts.length} expert(s)`, 'info');
+        }
+
+        function assignExpert(expertId) {
+            const expert = experts.find(e => e.id === expertId);
+            if (expert) {
+                if (expert.availability === 'offline') {
+                    showNotification(`${expert.name} is currently offline. They will contact you when available.`, 'info');
+                } else {
+                    showNotification(`Help requested from ${expert.name}. Redirecting to chat...`, 'success');
+                    setTimeout(() => {
+                        window.location.href = 'chat.html?expert=' + expertId;
+                    }, 1500);
+                }
+            }
+        }
+
+        function messageExpert(expertId) {
+            showNotification('Opening chat with expert...', 'info');
+            setTimeout(() => {
+                window.location.href = 'chat.html?expert=' + expertId;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

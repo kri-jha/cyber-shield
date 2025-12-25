@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore - Cyber Crime Awareness</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .explore-container {
+            max-width: 1200px;
+            margin: 80px auto 40px;
+            padding: 0 15px;
+        }
+
+        .explore-header {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .explore-header h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 12px 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        .search-bar button {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            border: none;
+            padding: 0 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .explore-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .featured-post {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .featured-content {
+            flex: 1;
+        }
+
+        .featured-content h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .featured-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .stat-box {
+            text-align: center;
+        }
+
+        .stat-box .number {
+            font-size: 28px;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-box .label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .trending-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .trending-tag {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .trending-tag:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Include Navbar -->
+    <div id="navbar-container"></div>
+
+    <script>
+    // Load navbar content
+    fetch('navbar.html')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('navbar-container').innerHTML = html;
+        })
+        .catch(error => console.error('Error loading navbar:', error));
+    </script>
+    <div class="explore-container">
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+
+        <div class="explore-header">
+            <h1><i class="fas fa-compass"></i> Explore Cyber Crime Cases</h1>
+            <p>Learn from thousands of solved cases. Filter by category, severity, or search specific issues.</p>
+            
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search cases (e.g., 'UPI fraud', 'Instagram hack')">
+                <button onclick="searchCases()">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+
+            <div class="trending-tags">
+                <span class="trending-tag" onclick="filterFeed('trending')">🔥 Trending</span>
+                <span class="trending-tag" onclick="filterFeed('recent')">🕐 Recent</span>
+                <span class="trending-tag" onclick="filterFeed('phishing')">🎣 Phishing</span>
+                <span class="trending-tag" onclick="filterFeed('job-fraud')">💼 Job Fraud</span>
+                <span class="trending-tag" onclick="filterFeed('online-shopping')">🛍️ Online Shopping</span>
+                <span class="trending-tag" onclick="filterFeed('investment')">📈 Investment Scam</span>
+                <span class="trending-tag" onclick="filterFeed('whatsapp')">💬 WhatsApp Hack</span>
+            </div>
+        </div>
+
+        <div class="featured-post">
+            <div class="featured-content">
+                <h2>📊 Monthly Cyber Crime Report</h2>
+                <p>See what types of cyber crimes are increasing this month and learn how to protect yourself.</p>
+                
+                <div class="featured-stats">
+                    <div class="stat-box">
+                        <span class="number">1,234</span>
+                        <span class="label">Cases Solved</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="number">89%</span>
+                        <span class="label">Success Rate</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="number">42</span>
+                        <span class="label">Active Experts</span>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-primary" onclick="viewReport()">
+                View Full Report
+            </button>
+        </div>
+
+        <div class="explore-grid" id="explorePosts">
+            <!-- Posts loaded by JavaScript -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="feed-script.js"></script>
+</body>
+</html>

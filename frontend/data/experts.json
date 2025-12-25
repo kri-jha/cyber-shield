@@ -1,0 +1,32 @@
+{
+  "experts": [
+    {
+      "id": "EXP001",
+      "name": "Dr. Sarah Chen",
+      "role": "Cybersecurity Analyst",
+      "organization": "CyberSafe Inc.",
+      "rating": 4.8,
+      "availability": "online",
+      "specialties": ["phishing", "malware", "data-breach"],
+      "experience": "8 years",
+      "casesResolved": 124
+    },
+    {
+      "id": "EXP002",
+      "name": "Marcus Johnson",
+      "role": "Digital Forensics Expert",
+      "organization": "SecureNet Labs",
+      "rating": 4.9,
+      "availability": "online",
+      "specialties": ["hacking", "financial-fraud", "identity-theft"],
+      "experience": "12 years",
+      "casesResolved": 89
+    }
+  ],
+  "lastUpdated": "2024-01-01T00:00:00.000Z",
+  "stats": {
+    "totalExperts": 2,
+    "onlineExperts": 2,
+    "averageRating": 4.85
+  }
+}
