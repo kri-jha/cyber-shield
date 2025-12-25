@@ -1,14 +1,22 @@
 const admin = require('firebase-admin');
-const serviceAccount = require('./serviceAccountKey.json');
 
 // Initialize Firebase Admin
-// Note: You must provide a valid serviceAccountKey.json file in the config directory
-// or use environment variables for production.
+// Support both Environment Variable (Production) and Local File (Development)
+let serviceAccount;
+
 try {
+    if (process.env.FIREBASE_SERVICE_ACCOUNT) {
+        // Production: Parse the JSON string from Environment Variable
+        serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+    } else {
+        // Development: Load from local file
+        serviceAccount = require('./serviceAccountKey.json');
+    }
+
     admin.initializeApp({
         credential: admin.credential.cert(serviceAccount)
     });
-    console.log('Firebase Admin Initialized');
+    console.log('Firebase Admin Initialized Successfully');
 } catch (error) {
     console.error('Firebase Admin Initialization Error:', error);
 }
