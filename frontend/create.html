@@ -761,7 +761,19 @@
                 isAnonymous
             });
 
+
             // Validation
+            if (!auth.currentUser) {
+                showNotification('⚠️ You must be logged in to create a ticket.', 'error');
+                // Optional: open login modal if available, or scroll to top
+                setTimeout(() => {
+                    // If we had a login function exposed, we could call it. 
+                    // For now just scroll up to show they are not logged in.
+                    window.scrollTo(0, 0);
+                }, 1500);
+                return;
+            }
+
             if (!title || !description || !category) {
                 showNotification('Please fill all required fields', 'error');
                 return;
