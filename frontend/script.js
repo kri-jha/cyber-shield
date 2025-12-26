@@ -222,7 +222,7 @@ function updateUIForLogin() {
 
 // Check login status on load
 document.addEventListener('DOMContentLoaded', () => {
-    // Other init code...
+    checkRedirectLogin(); // Check if returning from Google Redirect
     updateUIForLogin();
 });
 
